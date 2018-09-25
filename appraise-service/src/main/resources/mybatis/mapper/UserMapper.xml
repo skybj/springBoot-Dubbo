@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="cn.jsxwsl.dubbo.dao.UserDao">
+
+
+    <select id="queryUserList" resultType="User">
+       SELECT id,sn,openid, account, password, nickname, headimgurl FROM sg_user;
+    </select>
+
+
+    <select id="queryUserById" resultType="User">
+       SELECT id,sn,openid, account, password, nickname, headimgurl FROM sg_user WHERE id=#{id};
+    </select>
+
+
+    <select id="queryUserByAccount" resultType="User">
+       SELECT id,sn,openid, account, password, nickname, headimgurl FROM sg_user WHERE account=#{account};
+    </select>
+
+
+</mapper>

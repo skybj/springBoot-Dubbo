@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>appraise-web</groupId>
+	<artifactId>appraise-web</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<spring-boot-starter-web.version>1.5.8.RELEASE</spring-boot-starter-web.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>appraise-api</groupId>
+			<artifactId>appraise-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- 自动配置内嵌Servlet容器 自动配置文件上传 自动配置http编码，默认utf-8 自动配置MappingJackson2HttpMessageConverterConfiguration与MappingJackson2XmlHttpMessageConverterConfiguration 
+			自动配置Spring MVC Spring Boot推荐使用Thymeleaf作为模板引擎，其提供了完美的Spring MVC支持 内嵌Tomcat、Jetty无法执行jar形式的jsp；Undertow不支持JSP -->
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-web</artifactId> 
+			<version>${spring-boot-starter-web.version}</version> </dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
+		<!--配置支持jsp -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>8.5.12</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+	</dependencies>
+</project>

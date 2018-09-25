@@ -1,0 +1,4 @@
+#active 与profiles前面要有空格
+spring:
+  profiles:
+   active: dev

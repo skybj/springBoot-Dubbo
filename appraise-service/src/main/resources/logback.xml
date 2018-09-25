@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="D:/data/weblog" />
+    <!-- 项目名称 -->
+    
+     <!-- 控制台日志组件 -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+        <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 文件日志组件 -->
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/shihou.ad.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- rollingFileAppender，滚动记录文件，先将日志记录到指定文件，当符合某个条件时，将日志记录到其他文件-->
+    <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- rollingPolicy 表示滚动策略，这里配置按照时间滚动 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/shihou.ad.%d{yyyy-MM-dd_HH} %i.log</fileNamePattern>
+            <!-- 活动文件的大小 -->
+            <MaxFileSize>20MB</MaxFileSize>
+            <!-- 文件有效期30天 -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{50} - %msg%n</pattern>
+        </encoder>
+    </appender>
+   <!-- 配置mybatis -->
+   <logger name="org.apache" level="INFO" ></logger>
+    <logger name="org.mybatis" level="INFO" ></logger>
+    <logger name="java.sql.PreparedStatement" level="debug" ></logger>
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+   
+    
+    <logger name="org.springframework" level="ERROR" ></logger>
+    <logger name="org.hibernate" level="ERROR" ></logger>
+    <logger name="org.aspectj" level="ERROR" ></logger>
+    <logger name="sun.rmi" level="INFO" ></logger>
+    <logger name="sun.net" level="INFO" ></logger>
+    <logger name="javax.management" level="INFO" ></logger>
+
+
+
+   <!-- level="TRACE"表示上面配置的 日志组件都可以生效 -->
+    <root level="TRACE">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="rollingFileAppender"/>
+    </root>
+
+</configuration>

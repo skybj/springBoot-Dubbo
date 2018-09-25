@@ -1,0 +1,65 @@
+#tomcat配置
+server:
+  port: 8081
+  context-path: /appraise-service
+  session:
+    timeout: 36000
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 100
+  connection-timeout: 20000
+#数据库相关配置
+spring:
+  application:
+  name: dubbo-user-provider # 服务提供者名字
+  datasource:
+    #   数据源基本配置
+    username: root
+    password: 123
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ceshi?useUnicode=true&amp;characterEncoding=UTF-8
+    type: com.alibaba.druid.pool.DruidDataSource
+    maxActive: 100
+mybatis:
+  # 指定全局配置文件位置
+  config-location: classpath:mybatis/mybatis-config.xml
+  # 指定sql映射文件位置
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  # 别名配置
+  type-aliases-package: cn.jsxwsl.dubbo.bean
+    
+# redis相关配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    timeout: 20000
+#集群环境打开下面注释，单机不需要打开
+#    cluster:
+#      集群信息
+#      nodes: xxx.xxx.xxx.xxx:xxxx,xxx.xxx.xxx.xxx:xxxx,xxx.xxx.xxx.xxx:xxxx
+#      #（普通集群，不使用则不用开启）在群集中执行命令时要遵循的最大重定向数目。默认值是5 一般当此值设置过大时，容易报：Too many Cluster redirections
+#      maxRedirects: 5
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+    password:
+  
+# dubbo 相关配置， 服务注册, #配置多个  address: zookeeper://127.0.0.1:2181,127.0.0.1:2182
+dubbo:
+  application:
+    name: dubbo-user-service-provider
+  registry:
+    address: zookeeper://192.168.55.13:2181
+  protocol:
+    name: dubbo
+    port: 10003
+#可不配置  scan: cn.jsxwsl.dubbo.service.impl
+    
+#显示sql语句
+logging:
+  level:
+    cn.jsxwsl.dubbo.bean: debug
+
